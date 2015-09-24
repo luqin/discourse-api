@@ -1,0 +1,45 @@
+{
+
+  "url": "",
+
+  "api": {
+    "key": "",
+    "username": ""
+  },
+
+  "user": {
+    "new": {
+      "email": "",
+      "password": ""
+    }
+  },
+
+  "topic": {
+    "category": "",
+    "title": "",
+    "body": "",
+    "reply": {
+      "body": ""
+    },
+    "post": {
+      "reply": {
+        "body": ""
+      }
+    }
+  },
+
+  "pm": {
+    "target_usernames": "",
+    "title": "",
+    "body": "",
+    "reply": {
+      "body": ""
+    }
+  },
+
+  "search": {
+    "term": "",
+    "username": ""
+  }
+
+}

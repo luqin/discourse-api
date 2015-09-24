@@ -1,0 +1,25 @@
+{
+  "name": "discourse",
+  "description": "A simple javascript wrapper for the Discourse API",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "mocha -R spec -t 10000"
+  },
+  "main": "lib/discourse.js",
+  "keywords": [
+    "Discourse"
+  ],
+  "repository": "git://github.com/io3/discourse-api",
+  "dependencies": {
+    "component-querystring": "^2.0.0",
+    "es6-promise": "^3.0.2",
+    "whatwg-fetch": "^0.9.0"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "karma": "^0.13.10",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^0.2.0",
+    "mocha": "^1.16.2"
+  }
+}
