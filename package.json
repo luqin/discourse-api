@@ -3,9 +3,13 @@
   "description": "A simple javascript wrapper for the Discourse API",
   "version": "0.0.1",
   "scripts": {
-    "test": "mocha -R spec -t 10000"
+    "build": "babel ./src -d lib --ignore '__tests__'",
+    "test": "karma start",
+    "lint": "eslint src",
+    "postinstall": "node -e \"require('fs').stat('lib', function (e, s) { process.exit(e || !s.isDirectory() ? 1 : 0) })\" || npm run build",
+    "prepublish": "npm run build"
   },
-  "main": "lib/discourse.js",
+  "main": "lib/Discourse.js",
   "keywords": [
     "Discourse"
   ],
@@ -16,10 +20,25 @@
     "whatwg-fetch": "^0.9.0"
   },
   "devDependencies": {
+    "assert": "1.3.0",
+    "babel": "5.8.23",
+    "babel-core": "^5.8.23",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^5.0.0",
     "chai": "^3.3.0",
-    "karma": "^0.13.10",
+    "es6-promise": "^3.0.2",
+    "eslint": "^1.5.1",
+    "karma": "^0.13.8",
+    "karma-browserstack-launcher": "^0.1.4",
     "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-firefox-launcher": "^0.1.6",
     "karma-mocha": "^0.2.0",
-    "mocha": "^1.16.2"
+    "karma-mocha-reporter": "^1.1.1",
+    "karma-sourcemap-loader": "^0.3.5",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.0.1",
+    "webpack": "^1.4.13",
+    "webpack-dev-middleware": "^1.2.0"
   }
 }

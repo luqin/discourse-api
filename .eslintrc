@@ -1,0 +1,16 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "globals": {
+    "__DEV__": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": 0
+  }
+}

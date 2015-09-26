@@ -1,66 +1,122 @@
-// Karma configuration
-// Generated on Thu Sep 24 2015 22:14:06 GMT+0800 (中国标准时间)
+var webpack = require('webpack');
 
-module.exports = function(config) {
+module.exports = function (config) {
+  // Browsers to run on BrowserStack
+  var customLaunchers = {
+    BS_Chrome: {
+      base: 'BrowserStack',
+      os: 'Windows',
+      os_version: '8.1',
+      browser: 'chrome',
+      browser_version: '39.0',
+    },
+    BS_Firefox: {
+      base: 'BrowserStack',
+      os: 'Windows',
+      os_version: '8.1',
+      browser: 'firefox',
+      browser_version: '32.0',
+    },
+    BS_Safari: {
+      base: 'BrowserStack',
+      os: 'OS X',
+      os_version: 'Yosemite',
+      browser: 'safari',
+      browser_version: '8.0',
+    },
+    BS_MobileSafari: {
+      base: 'BrowserStack',
+      os: 'ios',
+      os_version: '7.0',
+      browser: 'iphone',
+      real_mobile: false,
+    },
+//    BS_InternetExplorer9: {
+//      base: 'BrowserStack',
+//      os: 'Windows',
+//      os_version: '7',
+//      browser: 'ie',
+//      browser_version: '9.0',
+//    },
+    BS_InternetExplorer10: {
+      base: 'BrowserStack',
+      os: 'Windows',
+      os_version: '8',
+      browser: 'ie',
+      browser_version: '10.0',
+    },
+    BS_InternetExplorer11: {
+      base: 'BrowserStack',
+      os: 'Windows',
+      os_version: '8.1',
+      browser: 'ie',
+      browser_version: '11.0',
+    },
+  };
+
   config.set({
+    customLaunchers: customLaunchers,
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    browsers: [ 'Chrome' ],
+    frameworks: [ 'mocha', 'chai' ],
+    reporters: [ 'mocha' ],
 
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
-
-
-    // list of files / patterns to load in the browser
     files: [
-      'lib/*.js',
-      'test/**/*.js'
+      'tests.webpack.js'
     ],
 
-
-    // list of files to exclude
-    exclude: [
-    ],
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'tests.webpack.js': [ 'webpack', 'sourcemap' ]
     },
 
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        loaders: [
+          { test: /\.js$/, exclude: /node_modules/, loader: 'babel' }
+        ]
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify('test')
+        })
+      ]
+    },
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    webpackServer: {
+      noInfo: true
+    }
+  });
 
+  if (process.env.USE_CLOUD) {
+    config.browsers = Object.keys(customLaunchers);
+    config.reporters = [ 'dots' ];
+    config.browserDisconnectTimeout = 10000;
+    config.browserDisconnectTolerance = 3;
+    config.browserNoActivityTimeout = 30000;
+    config.captureTimeout = 120000;
 
-    // web server port
-    port: 9876,
+    if (process.env.TRAVIS) {
+      var buildLabel = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
 
+      config.browserStack = {
+        username: process.env.BROWSER_STACK_USERNAME,
+        accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
+        pollingTimeout: 10000,
+        startTunnel: false,
+        project: 'react-router',
+        build: buildLabel,
+        name: process.env.TRAVIS_JOB_NUMBER,
+      };
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
-
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox', 'IE', 'Safari'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
-  })
-}
+      config.singleRun = true;
+    } else {
+      config.browserStack = {
+        username: process.env.BROWSER_STACK_USERNAME,
+        accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
+        pollingTimeout: 10000,
+        startTunnel: true,
+      };
+    }
+  }
+};

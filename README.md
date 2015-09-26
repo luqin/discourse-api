@@ -19,6 +19,9 @@ $ npm install discourse --save
 For a node.js implementation, try [Node discourse-api](https://github.com/dhyasama/discourse-api).
 
 
+## Documentation
+
+[Discourse API Documentation](https://meta.discourse.org/t/discourse-api-documentation)
 
 
 [npm-badge]: http://badge.fury.io/js/discourse.svg
