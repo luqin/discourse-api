@@ -45,7 +45,6 @@ describe('Discourse User API', () => {
       .then(function (user) {
 
         // make assertions
-        should.not.exist(err);
         should.exist(user);
 
         // make more assertions

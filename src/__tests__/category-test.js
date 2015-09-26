@@ -28,7 +28,7 @@ describe("category", () => {
         // make assertions
         should.exist(res);
 
-        var json = JSON.parse(res);
+        // var json = JSON.parse(res);
 
         // make more assertions
         // json.should.have.properties('category');
