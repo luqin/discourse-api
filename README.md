@@ -1,6 +1,6 @@
 # discourse-api
 
-[![NPM version][npm-badge]][npm] [![Build Status][travis-ci-image]][travis-ci-url] [![Gitter][gitter-badge]][gitter]
+[![NPM version][npm-badge]][npm] [![Build Status][travis-ci-image]][travis-ci-url]
 
 [![Dependency Status][deps-badge]][deps]
 [![devDependency Status][dev-deps-badge]][dev-deps]
@@ -27,17 +27,14 @@ For a node.js implementation, try [Node discourse-api](https://github.com/dhyasa
 [npm-badge]: http://badge.fury.io/js/discourse.svg
 [npm]: http://badge.fury.io/js/discourse
 
-[gitter-badge]: https://img.shields.io/badge/gitter-join%20chat-f81a65.svg?style=flat-square
-[gitter]: https://gitter.im/io3/discourse-api?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+[deps-badge]: https://david-dm.org/luqin/discourse-api.svg
+[deps]: https://david-dm.org/luqin/discourse-api
 
-[deps-badge]: https://david-dm.org/io3/discourse-api.svg
-[deps]: https://david-dm.org/io3/discourse-api
+[dev-deps-badge]: https://david-dm.org/luqin/discourse-api/dev-status.svg
+[dev-deps]: https://david-dm.org/luqin/discourse-api#info=devDependencies
 
-[dev-deps-badge]: https://david-dm.org/io3/discourse-api/dev-status.svg
-[dev-deps]: https://david-dm.org/io3/discourse-api#info=devDependencies
+[peer-deps-badge]: https://david-dm.org/luqin/discourse-api/peer-status.svg
+[peer-deps]: https://david-dm.org/luqin/discourse-api#info=peerDependencies 
 
-[peer-deps-badge]: https://david-dm.org/io3/discourse-api/peer-status.svg
-[peer-deps]: https://david-dm.org/io3/discourse-api#info=peerDependencies 
-
-[travis-ci-image]: https://travis-ci.org/io3/discourse-api.svg
-[travis-ci-url]: https://travis-ci.org/io3/discourse-api
+[travis-ci-image]: https://travis-ci.org/luqin/discourse-api.svg
+[travis-ci-url]: https://travis-ci.org/luqin/discourse-api
